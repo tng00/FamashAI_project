@@ -1,0 +1,17 @@
+{% block content %}
+<div class="container">
+  <h2>Загрузить изображение</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Загрузить</button>
+  </form>
+  {% if img_obj %}
+  <hr>
+  <h2>Преобразованное изображение</h2>
+  <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+  <p><a href="{{ img_obj.image.url }}" download>Скачать преобразованное изображение</a></p>
+  <p><a href="{{ original_image_url }}" download>Скачать оригинальное изображение</a></p>
+  {% endif %}
+</div>
+{% endblock %}
