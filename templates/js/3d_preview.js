@@ -51,7 +51,7 @@ function main() {
 			side: THREE.DoubleSide
 		});
 		const objLoader = new OBJLoader();
-		objLoader.load('obj models/5-36/5-36-in_mesh.obj', (root) => {
+		objLoader.load('templates/obj models/5-36/5-36-in_mesh.obj', (root) => {
 		// objLoader.load('obj models/6-45/6-45-in_mesh.obj', (root) => {
 			root.traverse(node => {
 				node.material = material;
@@ -63,8 +63,8 @@ function main() {
 
 	function resizeRendererToDisplaySize(renderer) {
 		const canvas = renderer.domElement;
-		const width = canvas.clientWidth;
-		const height = canvas.clientHeight;
+		const width = canvas.clientWidth * 1.5;
+		const height = canvas.clientHeight * 1.5;
 		const needResize = canvas.width !== width || canvas.height !== height;
 		if (needResize) {
 			renderer.setSize(width, height, false);
