@@ -1,0 +1,509 @@
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
+body{line-height:1}border-radius
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+nav ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent;text-decoration:none}
+mark{background-color:#ff9;color:#e7bfbf;font-style:italic;font-weight:bold}
+del{text-decoration:line-through}
+abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
+table{border-collapse:collapse;border-spacing:0}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+input,select{vertical-align:middle}
+li{list-style:none}
+
+* {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	background: #fdfdfd;
+}
+
+#particles-js {
+	position: relative;
+	width: 100%;
+	height: 99.5vh;
+	background-color: #fdfdfd;
+	background-image: url("");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
+#header {
+	position: absolute;
+	width: 86vw;
+	height: 15vh;
+	left: 12vw;
+	top: 3vh;
+}
+
+#title {
+	font-family: "XO Thames";
+	font-style: normal;
+	font-weight: 200;
+	font-size: 3.08vw;
+	line-height: 9vh;
+	letter-spacing: 0.5em;
+	color: rgb(0, 0, 0);
+	float: left;
+}
+
+#title_image {
+	width: 9vw;
+	height: 11vh;
+	background-image: url(../assetts/logo.png);
+	background-size: cover;
+	background-position: center center;
+	float: left;
+	padding: 0px;
+}
+
+#bottomstick {
+	position: absolute;
+	width: 66.6vw;
+	height: 0px;
+	top: 57%;
+	border: 0.34vh solid #000000;
+}
+
+#dragondrop {
+	position: absolute;
+	width: 45.5vw;
+	height: 25vh;
+	left: 3vw;
+	top: 19vh;
+	background: linear-gradient(
+		250.03deg,
+		rgba(125, 207, 220, 0.84) 4.68%,
+		rgba(158, 185, 247, 0.84) 28.67%,
+		rgba(164, 164, 254, 0.84) 52.11%,
+		rgba(166, 154, 252, 0.84) 73.37%,
+		rgba(201, 138, 236, 0.84) 106.36%,
+		rgba(219, 156, 228, 0.84) 109.36%
+	);
+	backdrop-filter: blur(0.5px);
+	border-radius: 10px;
+}
+
+#cloud_side {
+	position: relative;
+	width: 66%;
+	height: 94%;
+	top: 3%;
+	left: 1%;
+	float: left;
+	border-radius: 5px;
+	transition: 0.3s;
+}
+#cloud_side:hover {
+	box-shadow: 0 0 40px rgb(0 0 0 / 10%);
+	color: white;
+}
+
+#cloud_image {
+	position: absolute;
+	width: 81%;
+	height: 95%;
+	left: 12%;
+	top: 2%;
+	background-image: url(../assetts/cloud3.png);
+	
+	background-size: cover;
+	background-position: center center;
+}
+
+#blure_stik {
+	position: absolute;
+	width: 96%;
+	height: 24%;
+	left: 2.5%;
+	top: 40%;
+	background: linear-gradient(
+		rgba(237, 236, 236, 0.196) 0%,
+		rgba(237, 236, 236, 0.196) 100%
+	);
+	backdrop-filter: blur(10px);
+	border-radius: 23px;
+	box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+}
+
+#drdrop_text1 {
+	font-family: "XO Thames";
+	font-style: normal;
+	font-weight: 300;
+	font-size: 1.4vw;
+	line-height: 5.6vh;
+	letter-spacing: 0.124em;
+	color: rgb(0, 0, 0);
+	text-align: center;
+}
+
+#choose_side {
+	position: relative;
+	width: 29%;
+	height: 100%;
+	float: right;
+	border-radius: 10px;
+}
+
+#choose_zone {
+	position: absolute;
+	background: rgba(237, 236, 236, 0.35);
+	backdrop-filter: blur(0.5px);
+	border-radius: 3px;
+}
+
+.gradient-button {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
+	transition: all 0.3s ease 0s;
+	font-family: "XO Thames";
+	font-style: normal;
+	font-size: 1.5vw;
+	line-height: normal;
+	color: rgb(0, 0, 0);
+	background: rgba(237, 236, 236, 0.35);
+	backdrop-filter: blur(0.5px);
+	border-radius: 0px 10px 10px 0px;
+}
+.gradient-button:hover {
+	box-shadow: 0 0 40px rgb(0 0 0 / 10%);
+	border: 3px solid blacks;
+}
+
+#button_pannel {
+	position: absolute;
+	width: 45.5vw;
+	height: 11.5vh;
+	left: 3vw;
+	bottom: 4vh;
+}
+
+.deleat_all_button {
+	position: absolute;
+	bottom: 2.3vh;
+	right: 1.3vw;
+	height: 1.7vh;
+	width: 17vw;
+	padding: 2.4vh 1vw;
+	text-transform: uppercase;
+	letter-spacing: 0.7vw;
+	background-size: 200%;
+	box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
+	transition: 0.4s;
+	font-family: "XO Thames";
+	font-size: 1.2vw;
+	color: rgb(0, 0, 0);
+	background: linear-gradient(
+		30deg,
+		rgb(162 195 235) -3.91%,
+		rgb(200 161 244) 104.47%
+	);
+	backdrop-filter: blur(0.5px);
+	border-radius: 7px;
+}
+.deleat_all_button:hover {
+	background: linear-gradient(to bottom right, #ff3258, #ffc559);
+	box-shadow: 0 15px 20px #e5682e44;
+	color: white;
+	transform: translateY(-3px);
+}
+
+.convert_all_button {
+	position: absolute;
+	bottom: 2.3vh;
+	left: 1.3vw;
+	height: 1.7vh;
+	width: 17vw;
+	padding: 2.4vh 1vw;
+	text-transform: uppercase;
+	letter-spacing: 0.7vw;
+	background-size: 200%;
+	box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
+	transition: 0.4s;
+	font-family: "XO Thames";
+	font-size: 1.2vw;
+	color: rgb(0, 0, 0);
+	background: linear-gradient(
+		106.26deg,
+		rgb(191 159 241) -3.91%,
+		rgb(158 200 234) 104.47%
+	);
+	backdrop-filter: blur(0.5px);
+	border-radius: 7px;
+}
+.convert_all_button:hover {
+	/* background: #2ee59d; */
+	background: linear-gradient(to bottom right, #229e6c, #43ffb4);
+	box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+	color: white;
+	transform: translateY(-3px);
+}
+
+#uploading_fles {
+	position: absolute;
+	width: 45.5vw;
+	height: 37vh;
+	left: 3vw;
+	top: 46vh;
+	background: rgba(237, 236, 236, 0.664);
+	backdrop-filter: blur(0.5px);
+	border-radius: 10px 10px 5px 5px;
+}
+
+#up_header {
+	width: 100%;
+	background: linear-gradient(
+		250.03deg,
+		rgba(125, 207, 220, 0.84) 4.68%,
+		rgba(158, 185, 247, 0.84) 28.67%,
+		rgba(164, 164, 254, 0.84) 52.11%,
+		rgba(166, 154, 252, 0.84) 73.37%,
+		rgba(201, 138, 236, 0.84) 106.36%,
+		rgba(219, 156, 228, 0.84) 109.36%
+	);
+	backdrop-filter: blur(0.5px);
+	border-radius: 10px 10px 0px 0px;
+	font-family: "XO Thames";
+	font-style: normal;
+	font-weight: 300;
+	font-size: 1.4vw;
+	line-height: 5vh;
+	letter-spacing: 0.124em;
+	color: rgb(0, 0, 0);
+	text-align: center;
+}
+
+#container {
+	height: 32vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+#item1 {
+	height: 7vh;
+	background-color:rgba(213, 213, 213, 0.5);
+	margin: 1%;
+	border-radius: 10px;
+}
+
+#file_name {
+	width: 100%;
+	margin-left: 3%;
+	font-family: "XO Thames";
+	font-style: normal;
+	font-weight: 300;
+	font-size: 1.4vw;
+	letter-spacing: 0.124em;
+
+}
+
+.convert_button {
+	background: linear-gradient(to bottom right, #ec74ff, #97fffd);
+	border: 0;
+	border-radius: 10px;
+	color: #000000;
+	cursor: pointer;
+	display: inline-block;
+	font-family: "XO Thames";
+	font-size: 1.4vw;
+	letter-spacing: 0.124em;
+	font-weight: 500;
+	line-height: 180%;
+	outline: transparent;
+	padding: 0 1rem;
+	text-align: center;
+	text-decoration: none;
+	transition: box-shadow .2s ease-in-out;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	white-space: nowrap;
+}
+
+.convert_button:not([disabled]):hover {
+	box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(255, 74, 243, 0.5), .125rem .125rem 1rem rgba(73, 255, 255, 0.5);
+	color: white;
+}
+
+.deleat_button {
+	margin-left: 3%;
+	margin-right: 3%;
+	background: linear-gradient(to bottom right, #ff3258, #ffc559);
+	border: 0;
+	border-radius: 10px;
+	color: #FFFFFF;
+	cursor: pointer;
+	display: inline-block;
+	font-family: "XO Thames";
+	font-size: 1.4vw;
+	letter-spacing: 0.124em;
+	font-weight: 500;
+	line-height: 180%;
+	outline: transparent;
+	padding: 0 1rem;
+	text-align: center;
+	text-decoration: none;
+	transition: box-shadow .2s ease-in-out;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	white-space: nowrap;
+}
+
+.deleat_button:not([disabled]):hover {
+	box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+	color: #000000;
+}
+
+
+
+#pre_header {
+	width: 100%;
+	background: linear-gradient(
+		250.03deg,
+		rgba(219, 156, 228, 0.84) 4.68%,
+		rgba(201, 138, 236, 0.84) 28.67%,
+		rgba(166, 154, 252, 0.84) 52.11%,
+		rgba(164, 164, 254, 0.84) 73.37%,
+		rgba(158, 185, 247, 0.84) 106.36%,
+		rgba(125, 207, 220, 0.84) 109.36%
+	);
+	backdrop-filter: blur(0.5px);
+	border-radius: 10px 10px 0px 0px;
+	font-family: "XO Thames";
+	font-style: normal;
+	font-weight: 300;
+	font-size: 1.4vw;
+	line-height: 5vh;
+	letter-spacing: 0.124em;
+	color: rgb(0, 0, 0);
+	text-align: center;
+	}
+
+#pre_header {
+	height: 5vh;
+}
+
+#up_header {
+	height: 5vh;
+}
+
+#preview {
+	position: absolute;
+	top: 19vh;
+	right: 3vw;
+	width: 45.5vw;
+	height: 77vh;
+	background: rgba(237, 236, 236, 0.664);
+	backdrop-filter: blur(0.5px);
+	border-radius: 10px;
+}
+
+#c {
+	display: block;
+	width: 100%;
+	height: 72vh;
+	border-radius: 0px 0px 10px 10px;
+}
+
+#download_pannel {
+	position: absolute;
+	width: 44vw;
+	height: 5vh;
+	left: 0.7vw;
+	bottom: 5vh;
+}
+
+.flame-button {
+	position: absolute;
+	bottom: 2.2vh;
+	right: 1.3vw;
+	height: 1.7vh;
+	width: 17vw;
+	padding: 2.4vh 1vw;
+	text-transform: uppercase;
+	letter-spacing: 0.7vw;
+	background-size: 200%;
+	box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
+	transition: 0.4s;
+	font-family: "XO Thames";
+	font-style: normal;
+	font-size: 1.2vw;
+	backdrop-filter: blur(0.5px);
+	border: 2px solid rgb(192 162 244);
+	color: rgb(192 162 244);
+	transition: 0.4s;
+}
+.flame-button:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	border: 2px solid rgba(0, 0, 0, 0);
+	transition: 0.4s;
+}
+.flame-button:hover:after {
+	border-color: rgb(192 162 244);
+	width: calc(100% - 10px);
+	height: calc(100% + 10px);
+}
+
+.obj-button {
+	position: absolute;
+	bottom: 2.2vh;
+	left: 1.3vw;
+	height: 1.7vh;
+	width: 17vw;
+	padding: 2.4vh 1vw;
+	text-transform: uppercase;
+	letter-spacing: 0.7vw;
+	background-size: 200%;
+	box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
+	transition: 0.4s;
+	font-family: "XO Thames";
+	font-style: normal;
+	font-size: 1.2vw;
+	backdrop-filter: blur(0.5px);
+	border: 2px solid rgb(192 162 244);
+	color: rgb(192 162 244);
+	transition: 0.4s;
+}
+.obj-button:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	border: 2px solid rgba(0, 0, 0, 0);
+	transition: 0.4s;
+}
+.obj-button:hover:after {
+	border-color: rgb(192 162 244);
+	width: calc(100% - 10px);
+	height: calc(100% + 10px);
+}

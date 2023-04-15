@@ -147,3 +147,8 @@ CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+STATIC_URL = '/static/'
+if not DEBUG:
+    STATIC_ROOT = ''
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates\\')]
