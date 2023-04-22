@@ -128,7 +128,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://33af-109-252-47-4.ngrok-free.app'
+    'https://cb36-95-84-235-32.ngrok-free.app'
 ]
 
 # REDIS related settings
