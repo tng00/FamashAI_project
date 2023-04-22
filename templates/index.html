@@ -1,18 +1,58 @@
-{% block content %}
-<div class="container">
-  <h2>Загрузить изображение</h2>
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Загрузить</button>
-  </form>
-  {% if img_obj %}
-  <hr>
-  <h2>Преобразованное изображение</h2>
-  <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
-  <p><a href="{{ img_obj.image.url }}" download>Скачать преобразованное изображение</a></p>
-  <p><a href="{{ original_image_url }}" download>Скачать оригинальное изображение</a></p>
-  {% endif %}
-</div>
-{% endblock %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "/css/style.css" %}">
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>FAMASHAI</title>
+    <link rel="shortcut icon" type="image/png" href="{% static "assetts/main_v2.png" %}"/>
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+		{
+			"imports": {
+			"three": "https://unpkg.com/three@0.151.3/build/three.module.js",
+			"three/addons/": "https://unpkg.com/three@0.151.3/examples/jsm/"
+			}
+		}
+    </script>
+</head>
+
+<body>
+    <div id="particles-js"></div>
+
+    <div id="header">
+        <h1 id="title">NEURDREAM \ FAMASHAI</h1>
+        <div id="title_image"></div>
+        <div id="bottomstick"></div>
+    </div>
+
+    <div class="container" id="dragondrop">
+        <h1 id="drdrop_text1">Your image here</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.image }}
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+
+    <div id="preview">
+			<div id="pre_header">PREVIEW OF YOUR .OBJ FILE</div>
+            {% if img_obj %}
+                <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+			    <div id="download_pannel">
+				    <a href="{{ img_obj.image.url }}" class="obj-button">obj</a>
+				    <a href="{{ original_image_url }}" class="flame-button">flame</a>
+			    </div>
+            {% endif %}
+    </div>
+
+    <!-- scripts -->
+    <script src="{% static "particles.js" %}"></script>
+    <script src="{% static "js/app.js" %}"></script>
+
+</body>
+
+</html>

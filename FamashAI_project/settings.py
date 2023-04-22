@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-j-a+hz5)8!7_-6=q)!^@qa9f7x4o=8euw$v%q37@51#wsaqng!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -71,7 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'FamashAI_project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -81,7 +78,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -101,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -113,13 +108,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_URL = '/static/'
+if not DEBUG:
+    STATIC_ROOT = ''
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static\\')]
 
 # Base url to serve media files
 MEDIA_URL = '/media/'
@@ -133,14 +128,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://30dc-95-84-235-32.eu.ngrok.io'
+    'https://33af-109-252-47-4.ngrok-free.app'
 ]
 
 # REDIS related settings
 REDIS_HOST = '127.0.0.1'
 REDIS_PORT = '6379'
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
-#CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+# CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 
 # Tell Celery to use Django's settings module
