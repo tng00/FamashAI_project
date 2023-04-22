@@ -23,41 +23,42 @@
 </head>
 
 <body>
-    <div id="particles-js"></div>
+<div id="particles-js"></div>
 
-    <div id="header">
-        <h1 id="title">NEURDREAM \ FAMASHAI</h1>
-        <div id="title_image"></div>
-        <div id="bottomstick"></div>
-    </div>
+<div id="header">
+    <h1 id="title">NEURDREAM \ FAMASHAI</h1>
+    <div id="title_image"></div>
+    <div id="bottomstick"></div>
+</div>
 
-    <div class="container" id="dragondrop">
-        <h1 id="drdrop_text1">Your image here</h1>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-group">
-                {{ form.image }}
-            </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
-        </form>
-    </div>
-
-    <div id="preview">
-      <div id="pre_header">PREVIEW OF YOUR .OBJ FILE</div>
-      <canvas id="preview-canvas"></canvas>
-      {% if done %}
-        <div id="download_pannel">
-          <button onclick="downloadFile('{{ obj_url }}', '{{ obj_name }}')" class="obj-button">Download .obj</button>
-          <button onclick="downloadFile('{{ mat_url }}', '{{ mat_name }}')" class="flame-button">Download .mat</button>
+<div class="container" id="dragondrop">
+    <h1 id="drdrop_text1">Your image here</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.image }}
         </div>
-      {% endif %}
-    </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+</div>
+
+<div id="preview">
+    <div id="pre_header">PREVIEW OF YOUR .OBJ FILE</div>
+    <canvas id="preview-canvas"></canvas>
+    {% if done %}
+        <div id="download_pannel">
+            <button onclick="downloadFile('{{ obj_url }}', '{{ obj_name }}')" class="obj-button">Download .obj</button>
+            <button onclick="downloadFile('{{ mat_url }}', '{{ mat_name }}')" class="flame-button">Download .mat
+            </button>
+        </div>
+    {% endif %}
+</div>
 
 
-    <!-- scripts -->
-    <script src="{% static "particles.js" %}"></script>
-    <script src="{% static "js/app.js" %}"></script>
-    <script>
+<!-- scripts -->
+<script src="{% static "particles.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>
+<script>
     function downloadFile(url, fileName) {
         fetch(url)
             .then(response => response.blob())
@@ -67,66 +68,64 @@
                 link.download = fileName;
                 link.click();
             });
-}
-   </script>
+    }
+</script>
+<script>
+    // create a new scene
+    const scene = new THREE.Scene();
 
-    <script>
-      // create a new scene
-        const scene = new THREE.Scene();
+    // create a new camera
+    const aspectRatio = window.innerWidth / window.innerHeight;
+    const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
 
-        // create a new camera
-        const aspectRatio = window.innerWidth / window.innerHeight;
-        const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+    // create a new renderer
+    const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('preview-canvas'), alpha: true});
 
-        // create a new renderer
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('preview-canvas'), alpha: true });
+    // set the clear color to transparent black
+    renderer.setClearColor(0x00000000, 0);
 
-        // set the clear color to transparent black
-        renderer.setClearColor(0x00000000, 0);
+    // set the size of the renderer and canvas element
+    const canvasWidth = 698; // adjust this as needed
+    const canvasHeight = canvasWidth / aspectRatio;
+    renderer.setSize(canvasWidth, canvasHeight);
+    document.getElementById('preview-canvas').style.width = `${canvasWidth}px`;
+    document.getElementById('preview-canvas').style.height = `${canvasHeight}px`;
 
-        // set the size of the renderer and canvas element
-        const canvasWidth = 698; // adjust this as needed
-        const canvasHeight = canvasWidth / aspectRatio;
-        renderer.setSize(canvasWidth, canvasHeight);
-        document.getElementById('preview-canvas').style.width = `${canvasWidth}px`;
-        document.getElementById('preview-canvas').style.height = `${canvasHeight}px`;
+    // create a new light
+    const light = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(light);
 
-        // create a new light
-        const light = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(light);
+    // load the OBJ file
+    const objLoader = new THREE.OBJLoader();
+    let obj;
+    objLoader.load('{{ obj_url }}', function (object) {
+        // add the loaded object to the scene
+        obj = object;
+        scene.add(obj);
+    });
 
-        // load the OBJ file
-        const objLoader = new THREE.OBJLoader();
-        let obj;
-        objLoader.load('{{ obj_url }}', function(object) {
-          // add the loaded object to the scene
-          obj = object;
-          scene.add(obj);
-        });
+    // set the camera position and frustum
+    camera.position.set(0, 0, 10);
+    const frustumHeight = 2;
+    camera.fov = 2 * Math.atan(frustumHeight / (2 * camera.position.z)) * (180 / Math.PI);
+    camera.updateProjectionMatrix();
 
-        // set the camera position and frustum
-        camera.position.set(0, 0, 10);
-        const frustumHeight = 2;
-        camera.fov = 2 * Math.atan(frustumHeight / (2 * camera.position.z)) * (180 / Math.PI);
-        camera.updateProjectionMatrix();
+    // add controls for rotation
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableZoom = true;
+    controls.enablePan = true;
 
-        // add controls for rotation
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableZoom = true;
-        controls.enablePan = true;
-
-        // render the scene
-        function animate() {
-          requestAnimationFrame(animate);
-          renderer.render(scene, camera);
-          controls.update();
-          if (obj) {
+    // render the scene
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+        controls.update();
+        if (obj) {
             obj.rotation.y += 0.005; // adjust the rotation speed as needed
-          }
         }
-        animate();
-    </script>
-
+    }
+    animate();
+</script>
 
 </body>
 </html>
