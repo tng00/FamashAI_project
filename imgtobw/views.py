@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .forms import ImageForm
 from .tasks import process_image
-import base64
+from celery.result import AsyncResult
+
+
 
 def index(request):
     """Process images uploaded by users"""
@@ -9,29 +11,14 @@ def index(request):
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            img_obj = form.instance
-            result = process_image.delay(img_obj.image.path)
 
-            obj_name = "2023.obj" # сделай счетчик чтоб динамически менять название файла
-            obj_path = r"C:\Users\Hoang Nguyen\Desktop\Папка обж и мат\\" # меняешь путь на свой
-            obj_path += obj_name
-            with open(obj_path, 'rb') as file:
-                obj_content = file.read()
-            encoded_file_content = base64.b64encode(obj_content).decode('utf-8')
-            obj_url = f"data:application/octet-stream;base64,{encoded_file_content}"
-
-            mat_name = "2023.mat" # сделай счетчик чтоб динамически менять название файла
-            mat_path = r"C:\Users\Hoang Nguyen\Desktop\Папка обж и мат\\" # меняешь путь на свой
-            mat_path += mat_name
-            with open(mat_path, 'rb') as file:
-                mat_content = file.read()
-            encoded_file_content = base64.b64encode(mat_content).decode('utf-8')
-            mat_url = f"data:application/octet-stream;base64,{encoded_file_content}"
-
+            result = process_image.delay(form.instance.image.path)
             while not result.ready():
                 continue
+            data = AsyncResult(result.id).get()
             return render(request, 'index.html',
-                          {'form': form, 'img_obj': img_obj, 'obj_url': obj_url, 'obj_name': obj_name, 'mat_url': mat_url, 'mat_name': mat_name})
+                          {'form': form, 'done': True, 'obj_url': data[0], 'obj_name': data[1],
+                           'mat_url': data[2], 'mat_name': data[3]})
     else:
         form = ImageForm()
     return render(request, 'index.html', {'form': form})

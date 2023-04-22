@@ -45,7 +45,7 @@
     <div id="preview">
       <div id="pre_header">PREVIEW OF YOUR .OBJ FILE</div>
       <canvas id="preview-canvas"></canvas>
-      {% if img_obj %}
+      {% if done %}
         <div id="download_pannel">
           <button onclick="downloadFile('{{ obj_url }}', '{{ obj_name }}')" class="obj-button">Download .obj</button>
           <button onclick="downloadFile('{{ mat_url }}', '{{ mat_name }}')" class="flame-button">Download .mat</button>
